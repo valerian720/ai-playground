@@ -124,7 +124,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 input:out-of-range {
   background-color: palegoldenrod;
 }

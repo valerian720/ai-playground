@@ -112,7 +112,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .arrow {
   stroke: rgb(0, 0, 0);
   stroke-width: 2;

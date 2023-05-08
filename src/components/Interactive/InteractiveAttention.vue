@@ -73,9 +73,12 @@
         <!--  -->
         <div>
           <div class="mb-3">
-            <b-button v-b-toggle.my-collapse variant="link">Отобразить доп. информацию и точные значения ⬇</b-button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#additionalInfo" aria-expanded="false"
+                aria-controls="additionalInfo">
+                Отобразить доп. информацию и точные значения ⬇
+            </button>
           </div>
-          <b-collapse id="my-collapse" class="p-1 m-1 border border-info rounded">
+          <div class="collapse" id="additionalInfo">
             <p>tokens: {{ tokens }}</p>
             <p>attentionQuerry: {{ attentionQuerry }}</p>
             <p>attentionKey: {{ attentionKey }}</p>
@@ -83,7 +86,7 @@
             <p>attetionQKpairs: {{ attetionQKpairs }}</p>
             <p>attentionScore: {{ attentionScore }}</p>
             <p>attentionSoftmax: {{ attentionSoftmax }}</p>
-          </b-collapse>
+          </div>
         </div>
         <!--  -->
         <div class="table-responsive">
@@ -126,7 +129,7 @@
 </template>
 
 <script lang="js">
-import * as use from '@tensorflow-models/universal-sentence-encoder';
+// import * as use from '@tensorflow-models/universal-sentence-encoder';
 
 import ArrowViewer from "@/components/ArrowViewer.vue";
 import VecMath from "@/lib/VecMath";
@@ -190,9 +193,9 @@ export default {
       //
       this.vectorizedText = this.tokens.map(val => lookupTable[val]);
       // does it work?
-      use.loadTokenizer().then(tokenizer => {
-        this.vectorizedText = tokenizer.encode('Hello, how are you?'); // [341, 4125, 8, 140, 31, 19, 54]
-      });
+      // use.loadTokenizer().then(tokenizer => {
+      //   this.vectorizedText = tokenizer.encode('Hello, how are you?'); // [341, 4125, 8, 140, 31, 19, 54]
+      // });
 
     },
     CalculateAttention() {
@@ -217,7 +220,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 input:out-of-range {
   background-color: palegoldenrod;
 }
