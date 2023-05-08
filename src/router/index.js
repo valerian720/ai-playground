@@ -1,22 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
-const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  },
+// list of component endpoints
+const routeDef = [
+  { name: "Главная", path: "/", componentName: "Home" },
+  { name: "О проекте", componentName: "About" },
+  //
+  { name: "BERT", componentName: "ExplainedBert" },
+  { name: "Stable Diffusion", componentName: "ExplainedStableDiffusion" },
+  //
+  { name: "Механизм Attention", componentName: "LearnAttention" },
+  { name: "Механизм AutoEncoding", componentName: "LearnAutoEncoding" },
+  { name: "Механизм Diffusion", componentName: "LearnDiffusion" },
+  { name: "Механизм Transformer", componentName: "LearnTransformer" },
 ];
+
+// auto add component as route from folder /views
+const routes = routeDef.map(function (def) {
+  return {
+    name: def.name,
+    path: def.path ? def.path : `/${def.componentName}`,
+    component: () => import(`@/views/${def.componentName}.vue`),
+  };
+});
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
